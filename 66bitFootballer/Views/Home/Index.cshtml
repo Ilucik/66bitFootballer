@@ -1,0 +1,55 @@
+﻿@model  IEnumerable<DataLayer.Team>
+@{ 
+}
+
+<div class="form-wrap">
+    <div class="profile">
+        <h1>Добавить футболиста</h1>
+    </div>
+    <form asp-action="saveitem" asp-controller="home" autocomplete="off">
+        <div>
+            <label for="name">Имя</label>
+            <input type="text" name="name" required>
+        </div>
+        <div>
+            <label for="surname">Фамилия</label>
+            <input type="text" name="surname" required>
+        </div>
+        <div class="radio">
+            <span>Пол</span>
+            <label>
+                <input type="radio" name="gender" value="m" required>мужской
+            </label>
+            <label>
+                <input type="radio" name="gender" value="f">женский
+            </label>
+        </div>
+        <div>
+            <label for="birthday">Дата рождения</label>
+            <input type="date" name="birthday" required>
+        </div>
+        <div>
+            <label for="teamName">Название команды</label>
+            <input type="text" list="teamsList" name="teamName" required>
+            <datalist id="teamsList">
+                @foreach (var item in Model)
+                {
+                    <option value="@item.Name"></option>   
+                }
+            </datalist>
+        </div>
+        <div>
+            <label for="country">Страна</label>
+            <select name="country" required>
+                <option value="">Выберите страну проживания</option>
+                <option value="Россия">Россия</option>
+                <option value="США">США</option>
+                <option value="Италия">Италия</option>
+            </select>
+            <div class="select-arrow"></div>
+        </div>
+        
+        <button type="submit">Отправить</button>
+    </form>
+</div>
+

@@ -1,0 +1,58 @@
+﻿@model DataLayer.Footballer
+@{
+}
+
+<div class="form-wrap">
+    <div class="profile">
+        <h1>Изменить данные футболиста</h1>
+    </div>
+    <form asp-action="edit" asp-controller="footballerslist" method="post" autocomplete="off">
+        <div>
+            <label for="name">Имя</label>
+            <input type="text" name="name" value="@Model.Name" required>
+        </div>
+        <div>
+            <label for="surname">Фамилия</label>
+            <input type="text" name="surname" value="@Model.Surname" required>
+        </div>
+        <div class="radio">
+            <span>Пол</span>
+            <label>
+                <input type="radio" name="gender" value="m" checked ="@(Model.Gender == 'm'? "checked": null)" required>мужской
+            </label>
+            <label>
+                <input type="radio" name="gender" value="f" checked ="@(Model.Gender == 'f'? "checked": null)">женский
+            </label>
+        </div>
+        <div>
+            <label for="birthday">Дата рождения</label>
+            <input type="date" name="birthday" value="@Model.Birthday.ToString("yyyy-MM-dd")" required>
+        </div>
+        <div>
+            @{var teams = ViewData["Teams"] as IEnumerable<DataLayer.Team>;}
+                <label for="teamName">Название команды</label>
+                <input type="text" list="teamsList" name="teamName"  required>
+                <datalist id="teamsList">
+                    @foreach (var item in teams)
+                    {
+                        <option value="@item.Name"></option>
+
+                    }
+                </datalist>
+        </div>
+        <div>
+            <label for="country">Страна</label>
+            <select name="country" required>
+                <option value="@Model.Country">@Model.Country</option>
+                <option value="Россия">Россия</option>
+                <option value="США">США</option>
+                <option value="Италия">Италия</option>
+            </select>
+            <div class="select-arrow"></div>
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-sm">Отправить</button>
+        <a class="btn btn-danger btn-sm" asp-controller="FootballersList" asp-action="FootballersList">Отмена</a>
+    </form>
+</div>
+
