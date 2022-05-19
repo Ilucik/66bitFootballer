@@ -21,8 +21,8 @@ $(() => {
                         <td>${v.Name}</td>
                         <td>${v.Surname}</td>
                         <td>${v.Gender}</td>
-                        <td>${v.Birthday}</td>
-                        <td>${v.TeamId}</td>
+                        <td>${v.Birthday.split('T')[0]}</td>
+                        <td>${v.Team.Name}</td>
                         <td>${v.Country}</td>
                         <td>
                         <a class='btn btn-primary btn-sm' href='../FootballersList/Edit/${v.Id}'>Edit</a>

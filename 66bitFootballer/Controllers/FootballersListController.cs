@@ -12,7 +12,7 @@ namespace _66bitFootballer
     public class FootballersListController : Controller
     {
         private readonly DataManager dataManager;
-        private IHubContext<SignalServer> signalHub;
+        private readonly IHubContext<SignalServer> signalHub;
         public FootballersListController(DataManager dataManager, IHubContext<SignalServer> signalHub)
         {
             this.dataManager = dataManager;
@@ -37,8 +37,14 @@ namespace _66bitFootballer
             return View(dataManager.Footballers.GetById(id));
         }
         [HttpPost]
-        public IActionResult Edit(Footballer footballer)
+        public IActionResult Edit(Footballer footballer,string teamName)
         {
+            var team = dataManager.Teams.Get(e => e.Name.Equals(teamName)).FirstOrDefault();
+            int teamId;
+            if (team is null)
+                teamId = dataManager.Teams.Add(new Team() { Name = teamName });
+            else teamId = team.Id;
+            footballer.TeamId = teamId;
             dataManager.Footballers.Update(footballer);
             signalHub.Clients.All.SendAsync("LoadProducts");
             return RedirectToAction("FootballersList");

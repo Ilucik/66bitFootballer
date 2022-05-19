@@ -29,11 +29,10 @@
             <input type="date" name="birthday" value="@Model.Birthday.ToString("yyyy-MM-dd")" required>
         </div>
         <div>
-            @{var teams = ViewData["Teams"] as IEnumerable<DataLayer.Team>;}
                 <label for="teamName">Название команды</label>
-                <input type="text" list="teamsList" name="teamName"  required>
+                <input type="text" list="teamsList" name="teamName" value="@Model.Team.Name" required>
                 <datalist id="teamsList">
-                    @foreach (var item in teams)
+                    @foreach (var item in ViewData["Teams"] as IEnumerable<DataLayer.Team>)
                     {
                         <option value="@item.Name"></option>
 

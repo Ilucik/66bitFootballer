@@ -27,7 +27,7 @@ namespace _66bitFootballer
             var connection = Configuration.GetConnectionString("DefaultConnection");
             services.AddSignalR();
             services.AddDbContext<EFDBContext>(op => op.UseSqlServer(connection, b => b.MigrationsAssembly("DataLayer")));
-            services.AddTransient<IRepository<Footballer>, EFRepository<Footballer>>();
+            services.AddTransient<IRepository<Footballer>, EFFootballerRepository>();
             services.AddTransient<IRepository<Team>, EFRepository<Team>>();
             services.AddScoped<DataManager>();
             services.AddControllers().AddJsonOptions(options=>

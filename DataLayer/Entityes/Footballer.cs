@@ -13,6 +13,7 @@ namespace DataLayer
         public char Gender { get; set; }
         public DateTime Birthday { get; set; }
         public int TeamId { get; set; }
+        public Team Team { get; set; }
         public string Country { get; set; }
     }
 }

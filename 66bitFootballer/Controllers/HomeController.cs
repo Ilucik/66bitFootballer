@@ -15,7 +15,7 @@ namespace _66bitFootballer.Controllers
     public class HomeController : Controller
     {
         private readonly DataManager dataManager;
-        private IHubContext<SignalServer> signalHub;
+        private readonly IHubContext<SignalServer> signalHub;
 
         public HomeController(DataManager dataManager, IHubContext<SignalServer> signalHub)
         {
