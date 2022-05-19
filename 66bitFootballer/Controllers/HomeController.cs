@@ -1,6 +1,7 @@
 ﻿using _66bitFootballer.Models;
 using DataLayer;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.SignalR;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using System;
@@ -14,10 +15,12 @@ namespace _66bitFootballer.Controllers
     public class HomeController : Controller
     {
         private readonly DataManager dataManager;
+        private IHubContext<SignalServer> signalHub;
 
-        public HomeController(DataManager dataManager)
+        public HomeController(DataManager dataManager, IHubContext<SignalServer> signalHub)
         {
             this.dataManager = dataManager;
+            this.signalHub = signalHub;
         }
 
         public IActionResult Index()
@@ -34,8 +37,8 @@ namespace _66bitFootballer.Controllers
                 teamId = dataManager.Teams.Add(new Team() { Name = teamName });
             else teamId = team.Id;
             footballer.TeamId = teamId;
-
             dataManager.Footballers.Add(footballer);
+            signalHub.Clients.All.SendAsync("LoadProducts");
             return RedirectToAction("Index");
         }
 

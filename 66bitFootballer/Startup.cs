@@ -25,11 +25,15 @@ namespace _66bitFootballer
         public void ConfigureServices(IServiceCollection services)
         {
             var connection = Configuration.GetConnectionString("DefaultConnection");
-
+            services.AddSignalR();
             services.AddDbContext<EFDBContext>(op => op.UseSqlServer(connection, b => b.MigrationsAssembly("DataLayer")));
             services.AddTransient<IRepository<Footballer>, EFRepository<Footballer>>();
             services.AddTransient<IRepository<Team>, EFRepository<Team>>();
             services.AddScoped<DataManager>();
+            services.AddControllers().AddJsonOptions(options=>
+            {
+                options.JsonSerializerOptions.PropertyNamingPolicy = null;
+            });
             services.AddControllersWithViews();
         }
 
@@ -55,6 +59,8 @@ namespace _66bitFootballer
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
+
+                endpoints.MapHub<SignalServer>("/signalrServer");
             });
         }
     }
