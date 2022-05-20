@@ -2,8 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DataLayer
 {
@@ -25,7 +23,7 @@ namespace DataLayer
 
         public IEnumerable<Footballer> Get(Func<Footballer, bool> selector)
         {
-            return context.Footballer.Include(f=>f.Team).Where(selector);
+            return context.Footballer.Include(f => f.Team).Where(selector);
         }
 
         public IEnumerable<Footballer> GetAll()

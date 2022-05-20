@@ -9,19 +9,19 @@
     <form asp-action="saveitem" asp-controller="home" autocomplete="off">
         <div>
             <label for="name">Имя</label>
-            <input type="text" name="name" required>
+            <input type="text" maxlength="25" name="name" required>
         </div>
         <div>
             <label for="surname">Фамилия</label>
-            <input type="text" name="surname" required>
+            <input type="text" maxlength="25" name="surname" required>
         </div>
         <div class="radio">
             <span>Пол</span>
             <label>
-                <input type="radio" name="gender" value="m" required>мужской
+                <input type="radio" name="gender" value="м" required>мужской
             </label>
             <label>
-                <input type="radio" name="gender" value="f">женский
+                <input type="radio" name="gender" value="ж">женский
             </label>
         </div>
         <div>
@@ -30,11 +30,12 @@
         </div>
         <div>
             <label for="teamName">Название команды</label>
-            <input type="text" list="teamsList" name="teamName" required>
+            <input type="text" maxlength="25" list="teamsList" name="teamName" required>
             <datalist id="teamsList">
                 @foreach (var item in Model)
                 {
-                    <option value="@item.Name"></option>   
+                    <option value="@item.Name"></option>
+
                 }
             </datalist>
         </div>
@@ -48,8 +49,7 @@
             </select>
             <div class="select-arrow"></div>
         </div>
-        
-        <button type="submit">Отправить</button>
+        <button type="submit" class="btn btn-primary btn-sm">Отправить</button>
     </form>
 </div>
 

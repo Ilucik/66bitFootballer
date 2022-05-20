@@ -1,11 +1,8 @@
 ﻿using DataLayer;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SignalR;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace _66bitFootballer
 {
@@ -18,7 +15,7 @@ namespace _66bitFootballer
             this.dataManager = dataManager;
             this.signalHub = signalHub;
         }
-        
+
         [HttpGet]
         public IActionResult GetFootballers()
         {
@@ -37,7 +34,7 @@ namespace _66bitFootballer
             return View(dataManager.Footballers.GetById(id));
         }
         [HttpPost]
-        public IActionResult Edit(Footballer footballer,string teamName)
+        public IActionResult Edit(Footballer footballer, string teamName)
         {
             var team = dataManager.Teams.Get(e => e.Name.Equals(teamName)).FirstOrDefault();
             int teamId;

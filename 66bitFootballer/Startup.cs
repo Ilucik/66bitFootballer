@@ -5,10 +5,6 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace _66bitFootballer
 {
@@ -30,7 +26,7 @@ namespace _66bitFootballer
             services.AddTransient<IRepository<Footballer>, EFFootballerRepository>();
             services.AddTransient<IRepository<Team>, EFRepository<Team>>();
             services.AddScoped<DataManager>();
-            services.AddControllers().AddJsonOptions(options=>
+            services.AddControllers().AddJsonOptions(options =>
             {
                 options.JsonSerializerOptions.PropertyNamingPolicy = null;
             });

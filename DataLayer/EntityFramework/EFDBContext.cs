@@ -1,10 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DataLayer
 {
@@ -13,7 +8,7 @@ namespace DataLayer
         public DbSet<Team> Team { get; set; }
         public DbSet<Footballer> Footballer { get; set; }
 
-        public EFDBContext(DbContextOptions<EFDBContext> options) : base(options) 
+        public EFDBContext(DbContextOptions<EFDBContext> options) : base(options)
         {
             Database.EnsureCreated();
         }

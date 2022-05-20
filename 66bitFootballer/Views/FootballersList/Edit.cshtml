@@ -9,19 +9,19 @@
     <form asp-action="edit" asp-controller="footballerslist" method="post" autocomplete="off">
         <div>
             <label for="name">Имя</label>
-            <input type="text" name="name" value="@Model.Name" required>
+            <input type="text" maxlength="25" name="name" value="@Model.Name" required>
         </div>
         <div>
             <label for="surname">Фамилия</label>
-            <input type="text" name="surname" value="@Model.Surname" required>
+            <input type="text" maxlength="25" name="surname" value="@Model.Surname" required>
         </div>
         <div class="radio">
             <span>Пол</span>
             <label>
-                <input type="radio" name="gender" value="m" checked ="@(Model.Gender == 'm'? "checked": null)" required>мужской
+                <input type="radio" name="gender" value="м" checked="@(Model.Gender == 'м'? "checked": null)" required>мужской
             </label>
             <label>
-                <input type="radio" name="gender" value="f" checked ="@(Model.Gender == 'f'? "checked": null)">женский
+                <input type="radio" name="gender" value="ж" checked="@(Model.Gender == 'ж'? "checked": null)">женский
             </label>
         </div>
         <div>
@@ -29,15 +29,15 @@
             <input type="date" name="birthday" value="@Model.Birthday.ToString("yyyy-MM-dd")" required>
         </div>
         <div>
-                <label for="teamName">Название команды</label>
-                <input type="text" list="teamsList" name="teamName" value="@Model.Team.Name" required>
-                <datalist id="teamsList">
-                    @foreach (var item in ViewData["Teams"] as IEnumerable<DataLayer.Team>)
-                    {
-                        <option value="@item.Name"></option>
+            <label for="teamName">Название команды</label>
+            <input type="text" list="teamsList" maxlength="25" name="teamName" value="@Model.Team.Name" required>
+            <datalist id="teamsList">
+                @foreach (var item in ViewData["Teams"] as IEnumerable<DataLayer.Team>)
+                {
+                    <option value="@item.Name"></option>
 
-                    }
-                </datalist>
+                }
+            </datalist>
         </div>
         <div>
             <label for="country">Страна</label>

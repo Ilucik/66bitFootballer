@@ -1,5 +1,3 @@
-using System;
-
 namespace _66bitFootballer.Models
 {
     public class ErrorViewModel

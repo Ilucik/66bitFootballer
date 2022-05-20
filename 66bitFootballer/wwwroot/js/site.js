@@ -25,8 +25,8 @@ $(() => {
                         <td>${v.Team.Name}</td>
                         <td>${v.Country}</td>
                         <td>
-                        <a class='btn btn-primary btn-sm' href='../FootballersList/Edit/${v.Id}'>Edit</a>
-                        <a class='btn btn-danger btn-sm' href='../FootballersList/Delete/${v.Id}'>Delete</a>
+                        <a class='btn btn-primary btn-sm' href='../FootballersList/Edit/${v.Id}'>Изменить</a>
+                        <a class='btn btn-danger btn-sm' href='../FootballersList/Delete/${v.Id}'>Удалить</a>
                         </td>
                     </tr>`
                 })
